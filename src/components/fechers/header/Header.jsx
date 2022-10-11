@@ -23,7 +23,7 @@ const drawerWidth = 240;
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { isLogIn, setIsLogIn } = useContext(usersContext);
+  const { isLogIn, setIsLogIn ,setLoggedInUser} = useContext(usersContext);
   const navigate = useNavigate();
 
   const navItems = isLogIn
@@ -31,6 +31,7 @@ export default function Header() {
     : ["Home", "SignIn"];
   const handleChange = () => {
     setIsLogIn(false);
+    setLoggedInUser(null)
   };
 
   const handleDrawerToggle = () => {

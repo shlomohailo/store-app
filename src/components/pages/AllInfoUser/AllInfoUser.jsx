@@ -1,41 +1,62 @@
-import { useContext } from "react";
+import { useContext ,useState} from "react";
 import { usersContext } from "../../../contexts/user";
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Collapse from "@mui/material/Collapse";
+
+
 
 function AllInfoUser() {
-  const { loggedInUser, setLoggedInUser } = useContext(usersContext);
-  console.log(users);
+  const { loggedInUser } = useContext(usersContext);
+  const [expanded, setExpanded] = useState(false);
+  console.log(loggedInUser)
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
   return (
     <div className="AllInfoUser">
-      <h1>AllInfoUser</h1>
+      <h1>All Info User</h1>
+      <Container component="main" maxWidth="xs">
+        <Card sx={{ maxWidth: 345 }}>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {loggedInUser.profile.about}
+            </Typography>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <Typography gutterBottom variant="h5" component="div">
+                {loggedInUser.username}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {loggedInUser.email}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {loggedInUser.profile.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {loggedInUser.profile.company}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {loggedInUser.profile.dob}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {loggedInUser.profile.address}{" "}
+              </Typography>
+            </Collapse>
+          </CardContent>
 
-      <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {users.email}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+          <CardActions>
+         
+            <Button size="small">Edit</Button>
+            <Button size="small" onClick={() => handleExpandClick()}> {expanded? "collapse": "expand"}</Button>
+          </CardActions>
+        </Card>
+      </Container>
     </div>
   );
 }

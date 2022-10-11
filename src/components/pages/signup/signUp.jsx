@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -17,8 +15,9 @@ import { usersContext } from "../../../contexts/user";
 const theme = createTheme();
 
 export default function SignUp() {
-  const { users, setUsers } = useContext(usersContext);
-  const { user, setIsLogIn } = useContext(usersContext);
+  const { users, setIsLogIn, setLoggedInUser, setUsers } =
+    useContext(usersContext);
+
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,23 +33,33 @@ export default function SignUp() {
     });
 
     const myObJtoPush = {
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
       email: data.get("email"),
-      bday: data.get("bday"),
       password: data.get("password"),
-      passwordCurrent: data.get("passwordCurrent"),
+      profile: {
+        name: data.get("firstName"),
+        company: "Telequiet",
+        dob: data.get("bday"),
+        address: "tel-aviv",
+        about:
+        "Sint aliquip fugiat irure dolore ipsum mollit id ex amet elit esse excepteur. Tempor irure adipisicing anim cillum occaecat occaecat sunt aute aute nisi do ipsum culpa consectetur.",
+      },
+      username: `${data.get("firstName")} ${data.get("lastName")}`,
+    
     };
 
-    if (myObJtoPush.password !== myObJtoPush.passwordCurrent) {
+    const tempUsers = users;
+    tempUsers.push(myObJtoPush);
+    setUsers(tempUsers);
+
+    // const newUsers = users.push(myObJtoPush);
+
+    if (myObJtoPush.password !== data.get("passwordCurrent")) {
       alert("password not current");
     } else {
       setIsLogIn(true);
+      setLoggedInUser(myObJtoPush);
       navigate("/", { replace: true });
     }
-    console.log(users);
-    const newUsers = users.push(myObJtoPush);
-    console.log(newUsers);
   };
 
   return (

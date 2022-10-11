@@ -18,7 +18,7 @@ import { useContext } from "react";
 const theme = createTheme();
 
 function SignIn() {
-  const { users, setIsLogIn } = useContext(usersContext);
+  const { users, setIsLogIn,setLoggedInUser } = useContext(usersContext);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -34,6 +34,7 @@ function SignIn() {
     } else {
       if (user.password === password) {
         setIsLogIn(true);
+        setLoggedInUser(user)
         navigate("/", { replace: true });
       } else {
         alert("password not correct");
