@@ -1,4 +1,4 @@
-const DATA_API="https://my-json-server.typicode.com/Jeck99/fake-data-api/data"
+const DATA_API="https://my-json-server.typicode.com/shlomohailo/etioianapi/spices"
 
 export async function getData() {
 

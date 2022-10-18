@@ -18,20 +18,28 @@ import { usersContext } from "../../../contexts/user";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 const drawerWidth = 240;
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { isLogIn, setIsLogIn ,setLoggedInUser} = useContext(usersContext);
+  const { isLogIn, setIsLogIn, setLoggedInUser } = useContext(usersContext);
   const navigate = useNavigate();
+   const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "#1976d2",
+      },
+    },
+  });
 
   const navItems = isLogIn
-    ? ["Home", "About", "Contact", "AllInfoUser", "Tabs", "Table", "SignIn"]
+    ? ["Home", "About", "Contact", "AllInfoUser", "Tabs", "Table"]
     : ["Home", "SignIn"];
   const handleChange = () => {
     setIsLogIn(false);
-    setLoggedInUser(null)
+    setLoggedInUser(null);
   };
 
   const handleDrawerToggle = () => {
@@ -76,74 +84,76 @@ export default function Header() {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+    <ThemeProvider theme={darkTheme}>
+      <Box sx={{ display: "flex" }}>
+        <AppBar component="nav">
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            >
+              {isLogIn && (
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={true}
+                        onChange={handleChange}
+                        aria-label="login switch"
+                      />
+                    }
+                    label={"Logout"}
+                  />
+                </FormGroup>
+              )}
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Button
+                  key={item}
+                  sx={{ color: "#fff" }}
+                  onClick={() => onNavItemClick(`/${item}`)}
+                >
+                  {item}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box component="nav">
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            {isLogIn && (
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={true}
-                      onChange={handleChange}
-                      aria-label="login switch"
-                    />
-                  }
-                  label={"Logout"}
-                />
-              </FormGroup>
-            )}
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: "#fff" }}
-                onClick={() => onNavItemClick(`/${item}`)}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
+            {drawer}
+          </Drawer>
+        </Box>
+        {/* <Box component="main" sx={{ p: 1 }}> */}
+        {/* <Toolbar /> */}
+        {/* <Typography></Typography> */}
+        {/* </Box> */}
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-        <Typography></Typography>
-      </Box>
-    </Box>
+    </ThemeProvider>
   );
 }

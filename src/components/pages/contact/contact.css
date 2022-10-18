@@ -1,0 +1,34 @@
+.contacts {
+    width: 50%;
+    margin: auto auto;
+    height: 94vh;
+}
+
+.contacts .right {
+    padding: 50px;
+}
+
+.contacts h1 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.contacts textarea,
+.contacts input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .contacts {
+        width: 100%;
+        margin: auto auto;
+    }
+
+
+}

@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Collapse from "@mui/material/Collapse";
-
+import   './UserInfo.css';
 
 
 function AllInfoUser() {

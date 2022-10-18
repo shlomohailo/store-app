@@ -64,11 +64,4 @@ function TableInfo() {
 }
 
 export default TableInfo;
-{
-  /* <img
-                      src={`${item.pic}`}
-                    /> */
-}
-{
-  /* <TableCell align="right">{item.pic}</TableCell> */
-}
+

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../components/pages/home/Home";
 import About from "../components/pages/about/About";
-import AddObj from "../components/pages/addObject/AddObject";
+// import AddObj from "../components/pages/addObject/AddObject";
 import SignIn from "../components/pages/signin/signin";
 import Tabs from "../components/pages/tabs/Tabs";
 import AllInfoUser from "../components/pages/AllInfoUser/AllInfoUser";
@@ -11,7 +11,7 @@ import Table from "../components/pages/table/Table";
 import PrivateRoutesIsLogIn from "./PrivateRoutesIsLogIn";
 import { usersContext } from "../contexts/user";
 import SignUp from "../components/pages/signup/signUp";
-
+import PaymentForm from '../components/fechers/PaymentForm'
 function Router() {
   const { isLogIn } = useContext(usersContext);
   return (
@@ -24,6 +24,8 @@ function Router() {
         <Route path="/Table" element={<Table />} />
         {/* <Route path="/AddObj" element={<AddObj/>} /> */}
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/PaymentForm" element={<PaymentForm />} />
+
        
       </Route>
       <Route path="/SignIn" element={<SignIn />} />

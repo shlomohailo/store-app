@@ -1,0 +1,24 @@
+.About {
+    background: #f9ab48;
+    padding: 60px 0;
+    height: 100vh;
+
+}
+
+h2 {
+    color: #cf593d;
+    padding: 0;
+}
+
+
+.div-first {
+    max-width: 100%;
+    padding: 0 15px;
+
+}
+
+.div-first p {
+    font-size: 16px;
+    line-height: 20px;
+   
+}
