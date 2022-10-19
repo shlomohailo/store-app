@@ -21,12 +21,12 @@ function Footer() {
       <ThemeProvider theme={darkTheme}>
         <Box
           sx={{
-            position: "relative",
+            position: "fixed",
             bottom: 0,
             left: 0,
             right: 0,
-            width: "100%",
-          }}
+            // width: "100%",
+                     }}
         >
           <BottomNavigation>
             <IconButton

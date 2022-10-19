@@ -10,6 +10,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import CardMedia from "@mui/material/CardMedia";
+import { Button } from "@mui/material";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function TableInfo() {
   const { data } = useContext(usersContext);
@@ -19,7 +22,7 @@ function TableInfo() {
       <h1>Table</h1>
       <Container>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 650 ,marginBottom:"55PX"}} aria-label="simple table" >
             <TableHead>
               <TableRow>
                 <TableCell align="right">quantity</TableCell>
@@ -30,6 +33,7 @@ function TableInfo() {
                 <TableCell align="right">size</TableCell>
                 <TableCell align="right">condition</TableCell>
                 <TableCell align="right">pic</TableCell>
+                <TableCell align="right">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -37,6 +41,7 @@ function TableInfo() {
                 <TableRow
                   key={index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  id={item.id}
                 >
                   <TableCell align="right">{item.quantity}</TableCell>
                   <TableCell align="right">{item.description}</TableCell>
@@ -45,6 +50,7 @@ function TableInfo() {
                   <TableCell align="right">{item.color}</TableCell>
                   <TableCell align="right">{item.size}</TableCell>
                   <TableCell align="right">{item.condition}</TableCell>
+
                   <TableCell align="right">
                     <CardMedia
                       component="img"
@@ -53,6 +59,16 @@ function TableInfo() {
                       alt="Paella dish"
                     />
                   </TableCell>
+                  <Container>
+                    <Button
+                    style={{ marginTop: "50%" }}
+                      variant="outlined"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => document.getElementById(item.id).remove()}
+                    >
+                      Delete
+                    </Button>
+                  </Container>
                 </TableRow>
               ))}
             </TableBody>
@@ -64,4 +80,3 @@ function TableInfo() {
 }
 
 export default TableInfo;
-

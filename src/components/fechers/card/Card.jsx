@@ -34,7 +34,7 @@ function Cards({ data }) {
   console.log(price);
 
   return (
-    <div style={{ margin: "3rem", padding: "5px", marginTop: "5px" ,marginBottom:"5PX"}}>
+    <div style={{ margin: "3rem", padding: "5px", marginTop: "5px" ,marginBottom:"55PX"}}>
       <Card sx={{ maxWidth: 345, minWidth: 345, minHeight: 470 }}>
         <CardHeader title={quantity} subheader={dateAdded} />
         <CardMedia component="img" height="194" image={pic} alt="Paella dish" />

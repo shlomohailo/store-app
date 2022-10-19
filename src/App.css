@@ -3,7 +3,9 @@
 }
 
 
-
+.Table{
+  margin-bottom: 150px;
+}
 
 
 /* .App-header {
@@ -15,10 +17,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-} */
+}
 
-/* .App-link {
+.App-link {
   color: #61dafb;
-} */
+}
 
-
+ */
